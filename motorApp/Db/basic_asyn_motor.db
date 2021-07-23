@@ -1,31 +1,31 @@
 record(motor,"$(P)$(M)")
 {
-	field(DESC,"$(DESC)")
-	field(DTYP,"$(DTYP)")
-	field(DIR,"$(DIR)")
-	field(VELO,"$(VELO)")
-	field(VBAS,"$(VBAS)")
-	field(ACCL,"$(ACCL)")
-	field(BDST,"$(BDST)")
-	field(BVEL,"$(BVEL)")
-	field(BACC,"$(BACC)")
-	field(OUT,"@asyn($(PORT),$(ADDR))")
-	field(MRES,"$(MRES)")
-	field(ERES,"$(ERES)")
-        field(RDBD,"$(RDBD)")
-	field(PREC,"$(PREC)")
-	field(EGU,"$(EGU)")
-	field(DHLM,"$(DHLM)")
-	field(DLLM,"$(DLLM)")
-	field(INIT,"$(INIT)")
-        field(RTRY, "$(RTRY=10)")
-        field(UEIP, "$(UEIP=0)")
-	field(TWV,"$(TWV=1)")
+    field(DESC,"$(DESC)")
+    field(DTYP,"$(DTYP)")
+    field(DIR,"$(DIR)")
+    field(VELO,"$(VELO)")
+    field(VBAS,"$(VBAS)")
+    field(ACCL,"$(ACCL)")
+    field(BDST,"$(BDST)")
+    field(BVEL,"$(BVEL)")
+    field(BACC,"$(BACC)")
+    field(OUT,"@asyn($(PORT),$(ADDR))")
+    field(MRES,"$(MRES)")
+    field(ERES,"$(ERES)")
+    field(RDBD,"$(RDBD)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
+    field(DHLM,"$(DHLM)")
+    field(DLLM,"$(DLLM)")
+    field(INIT,"$(INIT)")
+    field(RTRY, "$(RTRY=1)")
+    field(UEIP, "$(UEIP=0)")
+    field(TWV,"$(TWV=1)")
     field(PCOF,"$(PCOF)")
     field(ICOF,"$(ICOF)")
     field(DCOF,"$(DCOF)")
     info(autosaveFields, "DIR DHLM DLLM TWV VELO ACCL BDST BVEL BACC EGU RTRY PREC MRES ERES RDBD DESC UEIP PCOF ICOF DCOF")
-	info(archive, "Monitor, 00:00:01, VAL OFF RBV DMOV MISS MSTA STAT LVIO HLS LLS RCNT MOVN CNEN")
+    info(archive, "Monitor, 00:00:01, VAL OFF RBV DMOV MISS MSTA STAT LVIO HLS LLS RCNT MOVN CNEN")
 }
 
 # These records make the motor resolution, offset and direction available to the driver
@@ -40,7 +40,6 @@ record(longout,"$(P)$(M)Direction") {
     field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_REC_DIRECTION")
 }
 
-
 # Motor offset for this axis
 record(ao,"$(P)$(M)Offset") {
     field(DESC, "$(M) offset")
@@ -51,7 +50,6 @@ record(ao,"$(P)$(M)Offset") {
     field(PREC, "$(PREC)")
 }
 
-
 # Motor resolution for this axis
 record(ao,"$(P)$(M)Resolution") {
     field(DESC, "$(M) resolution")
@@ -61,4 +59,3 @@ record(ao,"$(P)$(M)Resolution") {
     field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_REC_RESOLUTION")
     field(PREC, "$(PREC)")
 }
-
