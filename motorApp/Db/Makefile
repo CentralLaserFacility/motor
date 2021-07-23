@@ -18,6 +18,8 @@ include $(TOP)/configure/CONFIG
 DB += $(patsubst ../%, %, $(wildcard ../*.template))
 DB += $(patsubst ../%, %, $(wildcard ../*.db))
 DB += $(patsubst ../%, %, $(wildcard ../*.vdb))
+DB += home_visibility.db
+DB += error_calc.db
 
 DB += $(patsubst ../%, %, $(wildcard ../*.req))
 
