@@ -10,9 +10,6 @@
 [submodule "modules/motorAerotech"]
 	path = modules/motorAerotech
 	url = https://github.com/epics-motor/motorAerotech.git
-[submodule "modules/motorSmarAct"]
-	path = modules/motorSmarAct
-	url = https://github.com/epics-motor/motorSmarAct.git
 [submodule "modules/motorParker6K"]
 	path = modules/motorParker6K
 	url = git@github.com:CentralLaserFacility/motorParker6K.git
