@@ -1,0 +1,56 @@
+# This workflow will triage pull requests and apply a label based on the
+# paths that are modified in the pull request.
+#
+# To use this workflow, you will need to set up a .github/labeler.yml
+# file with configuration.  For more information, see:
+# https://github.com/actions/labeler
+
+name: Tar and push to source downloads
+on:
+  push:
+    branches:
+      - development_clf
+env:
+  PARENT_REPO_NAME: CentralLaserFacility/source-downloads 
+  PARENT_REPO_BRANCH: master
+
+
+jobs:
+  label:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    
+    
+      - name: Checkout ${{ env.PARENT_REPO_NAME }}
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.PARENT_REPO_NAME }}
+          submodules: 'true'
+          ref: ${{ env.PARENT_REPO_BRANCH }}
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+          fetch-depth: 1
+          
+      - uses: actions/checkout@v3
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./
+          files: |
+            ./toCompress
+          outPath: motor-R-7-2-2.tar.gz
+          
+      - name: Commit and push the changes to ${{ env.PARENT_REPO_NAME }}
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions - update submodules"
+          git add --all
+          git commit -m "Auto-update: ${{ github.event.repository.name }}" -m "Automatic update triggered by a push to the ${{ github.ref_name }} branch of the ${{ github.event.repository.name }} submodule repo." || echo "No changes to commit"
+          git push
+          
