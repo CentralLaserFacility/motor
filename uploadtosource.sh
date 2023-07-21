@@ -9,13 +9,13 @@ tar -czvf motor-R7-2-2.tar.gz motor-R7-2-2/
 rm -rf motor-R7-2-2
 
 
-mv source-downloads/EPICS/motor-R7-2-2.tar.gz source-downloads/EPICS/test_"`date +"%d-%m-%Y"`"
+mv source-downloads/EPICS/motor-R7-2-2.tar.gz source-downloads/EPICS/old_"`date +"%T%Z%d-%m-%Y"`"
 mv motor-R7-2-2.tar.gz source-downloads/EPICS/
 
 cd source-downloads/
 
 git add --all
-git commit -m "Updated motor-R7-2-2 on `date +"%d-%m-%Y"`"
+git commit -m "Updated motor-R7-2-2 on `date +"%T%Z %d-%m-%Y"`"
 git push
 
 rm -rf upload_dir
