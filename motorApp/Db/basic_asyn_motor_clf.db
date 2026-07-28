@@ -5,48 +5,48 @@
 
 record(motor,"$(P)$(M)")
 {
-	field(DESC,"$(DESC)")
-	field(DTYP,"$(DTYP=asynMotor)")
-	field(DIR,"$(DIR=0)")
-	field(VELO,"$(VELO)")
-	field(VBAS,"$(VBAS=0)")
-	field(ACCL,"$(ACCL=0.5)")
-	field(BDST,"$(BDST=0)")
-	field(BVEL,"$(BVEL=0)")
-	field(BACC,"$(BACC=0.5)")
-	field(OUT,"@asyn($(PORT),$(ADDR))")
-	field(MRES,"$(MRES)")
-	field(PREC,"$(PREC)")
-	field(EGU,"$(EGU)")
-	field(DHLM,"$(DHLM)")
-	field(DLLM,"$(DLLM)")
-        field(HIHI,"$(HIHI)")
-	field(LOLO,"$(LOLO)")
-	field(INIT,"$(INIT=)")
-	field(RTRY,"$(RTRY=0)")
-        field(DLY,"$(DLY=0)")   
-        field(HVEL,"$(HVEL=$(VELO))")
-        field(SREV, "$(SREV=1000)")
-        field(RRES, "$(RRES=)")
-        field(TWV, "$(TWV)")
-        field(ERES, "$(ERES=)")
-        field(JAR, "$(JAR=)")
-        field(UEIP, "$(UEIP=0)")
-        field(URIP, "$(URIP=0)")        
-        field(RDBL, "$(RDBL=)")         
-        field(VMAX, "$(VMAX=$(VELO))")
-        field(OFF, "$(OFF=0)")
-        field(RDBD, "$(RDBD=)")
-        field(FOFF, "$(FOFF=0)")
-        field(ADEL, "$(ADEL=0)")
-	field(MDEL, "$(MDEL=0)")
-        field(NTM, "$(NTM=1)")
-        field(HLSV, "$(HLSV=MAJOR)")
-        field(SPDB, "$(SPDB=0)")
-        field(SDIS, "$(P)$(M):SDIS.VAL") 
-        #info(autosaveFields_pass0, "DVAL OFF MRES ERES")
-	#info(autosaveFields, "DIR DHLM DLLM TWV VBAS VELO ACCL BDST BVEL BACC RDBD EGU RTRY UEIP URIP DLY PREC DISA DISP FOFF OFF FRAC OMSL JVEL JAR ADEL MDEL HVEL DESC SPDB")
-	info(archive, "Monitor, 00:00:01, VAL OFF RBV DMOV MISS MSTA STAT LVIO HLS LLS RCNT MOVN CNEN SPDB DVAL RLV")
+  field(DESC,"$(DESC)")
+  field(DTYP,"$(DTYP=asynMotor)")
+  field(DIR,"$(DIR=0)")
+  field(VELO,"$(VELO)")
+  field(VBAS,"$(VBAS=0)")
+  field(ACCL,"$(ACCL=0.5)")
+  field(BDST,"$(BDST=0)")
+  field(BVEL,"$(BVEL=0)")
+  field(BACC,"$(BACC=0.5)")
+  field(OUT,"@asyn($(PORT),$(ADDR))")
+  field(MRES,"$(MRES)")
+  field(PREC,"$(PREC)")
+  field(EGU,"$(EGU)")
+  field(DHLM,"$(DHLM)")
+  field(DLLM,"$(DLLM)")
+  field(HIHI,"$(HIHI)")
+  field(LOLO,"$(LOLO)")
+  field(INIT,"$(INIT=)")
+  field(RTRY,"$(RTRY=0)")
+  field(DLY,"$(DLY=0)")   
+  field(HVEL,"$(HVEL=$(VELO))")
+  field(SREV, "$(SREV=1000)")
+  field(RRES, "$(RRES=)")
+  field(TWV, "$(TWV)")
+  field(ERES, "$(ERES=)")
+  field(JAR, "$(JAR=)")
+  field(UEIP, "$(UEIP=0)")
+  field(URIP, "$(URIP=0)")        
+  field(RDBL, "$(RDBL=)")         
+  field(VMAX, "$(VMAX=$(VELO))")
+  field(OFF, "$(OFF=0)")
+  field(RDBD, "$(RDBD=)")
+  field(FOFF, "$(FOFF=0)")
+  field(ADEL, "$(ADEL=0)")
+  field(MDEL, "$(MDEL=0)")
+  field(NTM, "$(NTM=1)")
+  field(HLSV, "$(HLSV=MAJOR)")
+  field(SPDB, "$(SPDB=0)")
+  field(SDIS, "$(P)$(M):SDIS.VAL") 
+  #info(autosaveFields_pass0, "DVAL OFF MRES ERES")
+  #info(autosaveFields, "DIR DHLM DLLM TWV VBAS VELO ACCL BDST BVEL BACC RDBD EGU RTRY UEIP URIP DLY PREC DISA DISP FOFF OFF FRAC OMSL JVEL JAR ADEL MDEL HVEL DESC SPDB")
+  info(archive, "Monitor, 00:00:01, VAL OFF RBV DMOV MISS MSTA STAT LVIO HLS LLS RCNT MOVN CNEN SPDB DVAL RLV")
 }
 
 #Enable/Disable channel access for the motor record
@@ -71,26 +71,26 @@ record(calcout, "$(P)$(M):SDIS") {
 #Depending on UEIP we may not have this on RBV
 record(calc, "$(P)$(M):MotorPos")
 {
-        field(DESC,"Motor Position")
-        field(INPA,"$(P)$(M).RMP CP")
-	field(INPB,"$(P)$(M).MRES NPP")
-	field(CALC,"(A*B)")
-	field(PREC,"$(PREC)")
-	field(EGU, "$(EGU)")
-        field(ADEL, "$(ADEL=0)")
-	field(MDEL, "$(MDEL=0)")
-	info(archive, "Monitor, 00:00:01, VAL")
+  field(DESC,"Motor Position")
+  field(INPA,"$(P)$(M).RMP CP")
+  field(INPB,"$(P)$(M).MRES NPP")
+  field(CALC,"(A*B)")
+  field(PREC,"$(PREC)")
+  field(EGU, "$(EGU)")
+  field(ADEL, "$(ADEL=0)")
+  field(MDEL, "$(MDEL=0)")
+  info(archive, "Monitor, 00:00:01, VAL")
 }
 
 #Record to provide REP scaling to engineering units
 #Depending on UEIP we may not have this on RBV
 record(calc, "$(P)$(M):EncoderPos")
 {
-        field(DESC,"Encoder Position")
-        field(INPA,"$(P)$(M).REP CP")
-	field(INPB,"$(P)$(M).ERES NPP")
-	field(CALC,"(A*B)")
-	field(PREC,"$(PREC)")
+  field(DESC,"Encoder Position")
+  field(INPA,"$(P)$(M).REP CP")
+  field(INPB,"$(P)$(M).ERES NPP")
+  field(CALC,"(A*B)")
+  field(PREC,"$(PREC)")
 	field(EGU, "$(EGU)")
         field(ADEL, "$(ADEL=0)")
 	field(MDEL, "$(MDEL=0)")
@@ -100,45 +100,45 @@ record(calc, "$(P)$(M):EncoderPos")
 #Record to calculate the following error
 record(calc, "$(P)$(M):FERROR")
 {
-        field(DESC,"Following Error")
-        field(INPA,"$(P)$(M).RMP CP")
-        field(INPB,"$(P)$(M).REP CP")
-        field(INPC,"$(P)$(M).MRES NPP")
-        field(INPD,"$(P)$(M).ERES NPP")
-        field(CALC,"ABS((A*C)-(B*D))")
-        field(FLNK,"$(P)$(M):FERRORMAX")
-        field(PREC,"$(PREC)")
-        field(EGU, "$(EGU)")
-        field(ADEL, "$(ADEL=0)")
-	field(MDEL, "$(MDEL=0)")
-        info(archive, "Monitor, 00:00:01, VAL")
+  field(DESC,"Following Error")
+  field(INPA,"$(P)$(M).RMP CP")
+  field(INPB,"$(P)$(M).REP CP")
+  field(INPC,"$(P)$(M).MRES NPP")
+  field(INPD,"$(P)$(M).ERES NPP")
+  field(CALC,"ABS((A*C)-(B*D))")
+  field(FLNK,"$(P)$(M):FERRORMAX")
+  field(PREC,"$(PREC)")
+  field(EGU, "$(EGU)")
+  field(ADEL, "$(ADEL=0)")
+  field(MDEL, "$(MDEL=0)")
+  info(archive, "Monitor, 00:00:01, VAL")
 }
 
 
 #Record to store the maximum following error
 record(calc, "$(P)$(M):FERRORMAX")
 {
-        field(DESC,"Following Error Max")
-        field(INPA,"$(P)$(M):FERROR.VAL")
-        field(INPB,"$(P)$(M):FERRORMAX.VAL")
-        field(CALC,"(A>B)?A:B")
-        field(HIGH,"$(FEHIGH=0)")
-        field(HIHI,"$(FEHIHI=0)")
-        field(HHSV,"$(FEHHSV=NO_ALARM)")
-        field(HSV, "$(FEHSV=NO_ALARM)")
-        field(PREC,"$(PREC)")
-        field(EGU, "$(EGU)")
-	info(autosaveFields, "VAL")
-	info(archive, "Monitor, 00:00:10")
+  field(DESC,"Following Error Max")
+  field(INPA,"$(P)$(M):FERROR.VAL")
+  field(INPB,"$(P)$(M):FERRORMAX.VAL")
+  field(CALC,"(A>B)?A:B")
+  field(HIGH,"$(FEHIGH=0)")
+  field(HIHI,"$(FEHIHI=0)")
+  field(HHSV,"$(FEHHSV=NO_ALARM)")
+  field(HSV, "$(FEHSV=NO_ALARM)")
+  field(PREC,"$(PREC)")
+  field(EGU, "$(EGU)")
+  info(autosaveFields, "VAL")
+  info(archive, "Monitor, 00:00:10")
 }       
 
 #Record to reset the maximum following error
 record(bo, "$(P)$(M):FEMAXRESET")
 {
-        field(DESC,"Reset max following error")
-        field(DTYP,"Soft Channel")
-        field(OUT, "$(P)$(M):FERRORMAX.VAL")
-        field(VAL, "0")
+  field(DESC,"Reset max following error")
+  field(DTYP,"Soft Channel")
+  field(OUT, "$(P)$(M):FERRORMAX.VAL")
+  field(VAL, "0")
 }
 
 #Manufacturers stated step angle given and issued pulse train specified at RES
@@ -158,11 +158,11 @@ record(ai, "$(P)$(M):RES")
 #Record to stop the motor record with ASG=ALWAYS
 record(bo, "$(P)$(M):Stop")
 {
-        field(DESC,"Stop the motor")
-        field(DTYP,"Soft Channel")
-        field(OUT, "$(P)$(M).STOP PP")
-        field(VAL, "1")
-	field(ASG, "ALWAYS")
+  field(DESC,"Stop the motor")
+  field(DTYP,"Soft Channel")
+  field(OUT, "$(P)$(M).STOP PP")
+  field(VAL, "1")
+  field(ASG, "ALWAYS")
 }
 
 #Set this to non-zero if the driver should delay its done moving callbacks
@@ -195,25 +195,116 @@ record(calcout, "$(P)$(M):Calibrate") {
    field(OUT, "$(P)$(M).OFF PP")
 }
 
-#Record describing the loop status 
-record(mbbo, "$(P)$(M):LOOP") {
-  field(DESC, "Loop status")
-  field(ZRST, "open_loop")        field(ZRVL, "1")
-  field(ONST, "feedback_loop")    field(ONVL, "2")
-  field(TWST, "closed_loop")      field(TWVL, "3")
+# ###  CUSTOM RECORDS ###
+record(mbbi, "$(P)$(M):HEALTH") {
+  field(DESC, "Physical state of axis")
+  field(ZRST, "Unknown")
+  field(ONST, "Healthy")
+  field(TWST, "Warning")
+  field(THST, "Fault")
+  field(DOL,  "$(P)$(M):HEALTH_CALC.VAL CP")
+  field(OMSL, "closed_loop")
+}
+
+record(calc, "$(P)$(M):HEALTH_CALC")
+{
+  field(INPA, "$(P)$(M):MotorConnection CP")
+  field(INPB, "$(P)$(M).MSTA CP")
+  field(CALC, "(A=0)?3:1")
+}
+
+record(bi, "$(P)$(M):FEEDBACK_CAPABLE") {
+  field(DESC, "ClosedLoop capable")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL, "$(FEEDBACK_CAPABLE=0)")
+}
+
+record(mbbi,"$(P)$(M):LOOP") {
+  field(DESC, "Control loop mode")
+  field(ZRST, "Open Loop")
+  field(ONST, "Feedback")
+  field(TWST, "Closed Loop")
+  field(THST, "Active Closed Loop")
   field(VAL, "$(LOOP=0)")
 }
 
-#Record describing the loop status 
-record(stringout, "$(P)$(M):STAGE_TYPE") {
+record(stringin,"$(P)$(M):DESIGNATOR")
+{
+  field(DESC,"Machine Designator")
+  field(VAL,"$(DESIGNATOR=)")
+}
+
+record(stringin,"$(P)$(M):MANUFACTURER")
+{
+  field(DESC,"Manufacturer")
+  field(VAL,"$(MANUFACTURER=)")
+}
+
+record(stringin,"$(P)$(M):MODEL")
+{
+  field(DESC,"Model")
+  field(VAL,"$(MODEL=)")
+}
+
+record(stringin,"$(P)$(M):MOTOR_TYPE")
+{
+  field(DESC,"Motor Type")
+  field(VAL,"$(MOTOR_TYPE=)")
+}
+
+#Stage assembly and asset tags
+record(stringin,"$(P)$(M):BARCODE")
+{
+    field(DESC,"Axis Barcode")
+    field(VAL,"$(BARCODE=)")
+}
+
+# Assembly multi-axis stages, also; What its carrying and what axis it typically drives in PM-201-CAM-1-Z
+record(stringin,"$(P)$(M):ASSEMBLY")
+{
+    field(DESC,"Assembly Designator")  #
+    field(VAL,"$(ASSEMBLY=)")
+}
+
+record(stringin,"$(P)$(M):ASSEMBLY_BARCODE") 
+{
+  field(DESC,"Assembly Barcode")
+  field(VAL,"$(ASSEMBLY_BARCODE=)")
+}
+
+#Description for the enum ROTARY/LINEAR/KINEMATIC
+record(stringin, "$(P)$(M):STAGE_TYPE") {
   field(DESC, "Stage or Load type")
   field(VAL, "$(STAGE_TYPE=  )")
 }
 
+#CustomRecord describing if there is an ENCODER for the Axis
+record(bi, "$(P)$(M):ENCODER") {
+  field(DESC, "Encoder Fitted")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL, "$(ENCODER_PRESENT=0)")
+}
+
+record(bi,"$(P)$(M):COMMISSIONED") {
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(COMMISSIONED=1)")
+}
+
+record(bi,"$(P)$(M):COLLISION")
+{
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(COLLISION_RISK=0)")
+}
+
 menu(menuLOOP) {
-    choice(menuLoopopen_loop, "open_loop")
-    choice(menuLoopclosed_loop, "closed_loop")
-    choice(menuLoopclosed_loop, "activeclosed_loop")
+  choice(menuLOOPOpen,      "Open Loop")
+  choice(menuLOOPFeedback,  "Feedback")
+  choice(menuLOOPClosed,    "Closed Loop")
+  choice(menuLOOPActive,    "Active Closed Loop")
 }
 
 #Instructive User input value without actuation 
@@ -243,6 +334,7 @@ record(calcout,"$(P)$(M):HighLim")
    field(INPA,"$(P)$(M).HLM CP MS")
    field(OUT,"$(P)$(M):TargetVal.LOPR")
 }
+
 #Instructive move command 
 record(calcout, "$(P)$(M):DoMove")
 {
