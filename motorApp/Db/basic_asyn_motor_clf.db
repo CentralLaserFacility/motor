@@ -66,7 +66,7 @@ record(mbbi, "$(P)$(M):HEALTH") {
 record(calc, "$(P)$(M):HEALTH_CALC")
 {
   field(INPA, "$(P)$(M):MotorConnection CP")
-  field(INPB, "$(P)$(M).MSTA CP")
+  #field(INPB, "$(P)$(M).MSTA CP")  #MSTA's use is planned later
   field(CALC, "(A==0)?3:1")
 }
 
@@ -128,6 +128,7 @@ record(stringin,"$(P)$(M):ASSEMBLY")
   field(VAL,"$(ASSEMBLY=)")
 }
 
+#POSITIONER/TRIPOD/HEXAPOD/KINEMATIC
 record(stringin,"$(P)$(M):ASSEMBLY_TYPE")
 {
   field(DESC,"Assembly Type")
@@ -140,10 +141,16 @@ record(stringin,"$(P)$(M):ASSEMBLY_BARCODE")
   field(VAL,"$(ASSEMBLY_BARCODE=)")
 }
 
-#Description for the enum ROTARY/LINEAR/KINEMATIC/PITCH/YAW/ROLL
+#Description for the enum ROTARY/LINEAR/KINEMATIC
 record(stringin, "$(P)$(M):STAGE_TYPE") {
   field(DESC, "Stage or Load type")
   field(VAL, "$(STAGE_TYPE= )")
+}
+
+#Machine geometry Degrees of freedom e.g. Planer Motion Type for the axis X/Y/Z/PITCH/ROLL/YAW
+record(stringin,"$(P)$(M):DOF_TYPE") {
+  field(DESC,"Kinematic DOF")
+  field(VAL,"$(DOF_TYPE=)")
 }
 
 record(bi,"$(P)$(M):STO_PRESENT") {
@@ -168,7 +175,7 @@ record(bi, "$(P)$(M):ENCODER") {
 
 record(stringin, "$(P)$(M):ENCODER_TYPE") {
   field(DESC, "Encoder type")
-  field(VAL, "$(ENCODER_TYPE=  )")
+  field(VAL, "$(ENCODER_TYPE=)")
 }
 
 record(bi,"$(P)$(M):COMMISSIONED") {
@@ -190,6 +197,13 @@ record(ao, "$(P)$(M):TargetVal")
   field(DESC,"Input without move")
   field(DTYP,"Soft Channel")
   field(VAL, "0")
+}
+
+#Following error tolerance as defined by the controller
+record(ai,"$(P)$(M):POSITION_TOLERANCE") {
+  field(DESC,"In-position tolerance")
+  field(VAL,"$(POSITION_TOLERANCE=0)")
+  field(EGU,"$(EGU)")
 }
 
 #LOPR for TargetVal from motor record
