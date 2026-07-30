@@ -208,7 +208,7 @@ record(calcout,"$(P)$(M):HighLim")
   field(DESC,"High limit Motor value")
   field(CALC,"A")
   field(INPA,"$(P)$(M).HLM CP MS")
-  field(OUT,"$(P)$(M):TargetVal.LOPR")
+  field(OUT,"$(P)$(M):TargetVal.HOPR")
 }
 
 #Instructive move command 
