@@ -1,4 +1,3 @@
-
 ############################################################
 #
 # Old ERROR PV - I kept this so I don't break screens while
@@ -6,7 +5,6 @@
 # Status PV below, we can remove this.
 #
 ###########################################################
-
 record(calc, "$(P)$(M):ERROR")
 {
         field(DESC, "Combined Error Flag")
@@ -17,7 +15,6 @@ record(calc, "$(P)$(M):ERROR")
         field(INPC, "$(P)$(M).MISS CP MS")
         field(CALC, "(A||B||C)?1:0")
 }
-
 
 ############################################################
 #
@@ -59,7 +56,6 @@ record(mbbi, "$(P)$(M):Status")
    field(ZRST, "Idle")
    field(ONST, "Moving")
    field(TWST, "Error")
-   info(archive, "Monitor, 00:00:01, VAL")
 }
 
 #Record to calculate what the Status PV should be for the motor OPI
@@ -96,5 +92,4 @@ record(mbbi, "$(P)$(M):StatusOPI")
    field(ONST, "Moving")
    field(TWST, "Error")
    field(THST, "Disabled")
-   info(archive, "Monitor, 00:00:01, VAL")
 }
