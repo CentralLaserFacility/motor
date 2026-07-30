@@ -273,7 +273,7 @@ record(stringin,"$(P)$(M):ASSEMBLY_BARCODE")
   field(VAL,"$(ASSEMBLY_BARCODE=)")
 }
 
-#Description for the enum ROTARY/LINEAR/KINEMATIC
+#Description for the enum ROTARY/LINEAR/KINEMATIC/PITCH/YAW/ROLL
 record(stringin, "$(P)$(M):STAGE_TYPE") {
   field(DESC, "Stage or Load type")
   field(VAL, "$(STAGE_TYPE=  )")
@@ -285,6 +285,11 @@ record(bi, "$(P)$(M):ENCODER") {
   field(ZNAM, "No")
   field(ONAM, "Yes")
   field(VAL, "$(ENCODER_PRESENT=0)")
+}
+
+record(stringin, "$(P)$(M):ENCODER_TYPE") {
+  field(DESC, "Encoder type")
+  field(VAL, "$(ENCODER_TYPE=  )")
 }
 
 record(bi,"$(P)$(M):COMMISSIONED") {
