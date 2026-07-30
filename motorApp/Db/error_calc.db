@@ -1,23 +1,5 @@
 ############################################################
 #
-# Old ERROR PV - I kept this so I don't break screens while
-# I update IOCs. Once the screens have been updated to use new
-# Status PV below, we can remove this.
-#
-###########################################################
-record(calc, "$(P)$(M):ERROR")
-{
-        field(DESC, "Combined Error Flag")
-        field(PINI, "YES")
-        field(VAL, "0")
-        field(INPA, "$(P)$(M).STAT CP MS")
-        field(INPB, "$(P)$(M).LVIO CP MS")
-        field(INPC, "$(P)$(M).MISS CP MS")
-        field(CALC, "(A||B||C)?1:0")
-}
-
-############################################################
-#
 # Set of records to define a status record for a motor.
 # This works well with CSS and archiving.
 # There are two records, one for the OPI and one for the database logic
