@@ -40,7 +40,6 @@ record(ao, "$(P)$(M):PostMoveDelay")
    field(PINI, "YES")
    field(EGU, "s")
    field(PREC, "1")
-   info(autosaveFields, "VAL")
 }
 
 #Include record to provide calculated error
@@ -64,7 +63,7 @@ record(calc, "$(P)$(M):HEALTH_CALC")
 {
   field(INPA, "$(P)$(M):MotorConnection CP")
   field(INPB, "$(P)$(M).MSTA CP")
-  field(CALC, "(A=0)?3:1")
+  field(CALC, "(A==0)?3:1")
 }
 
 record(bi, "$(P)$(M):FEEDBACK_CAPABLE") {
