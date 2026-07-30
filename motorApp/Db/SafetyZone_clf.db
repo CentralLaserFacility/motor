@@ -1,0 +1,60 @@
+###########################################################################################
+# Collision Pair Metadata
+#
+# Defines machine-level exclusion zones between two member axis within a contextual system.
+###########################################################################################
+record(bi,"$(S):COLPAIR$(Z):ENABLED")
+{
+    field(DESC,"Collision Pair Enabled")
+    field(ZNAM,"Disabled")
+    field(ONAM,"Enabled")
+    field(VAL,"$(ENABLED=0)")
+}
+
+record(longin,"$(S):COLPAIR$(Z):MEMBER_A")
+{
+    field(DESC,"Member A Axis")
+    field(VAL,"$(MEMBER_A=0)")
+}
+
+record(longin,"$(S):COLPAIR$(Z):MEMBER_B")
+{
+    field(DESC,"Member B Axis")
+    field(VAL,"$(MEMBER_B=0)")
+}
+
+record(stringin,"$(S):COLPAIR$(Z):DESIGNATOR_A")
+{
+    field(DESC,"Member A Designator")
+    field(VAL,"$(DESIGNATOR_A=)")
+}
+
+record(stringin,"$(S):COLPAIR$(Z):DESIGNATOR_B")
+{
+    field(DESC,"Member B Designator")
+    field(VAL,"$(DESIGNATOR_B=)")
+}
+
+record(ai,"$(S):COLPAIR$(Z):MEMBER_A_LL")
+{
+    field(DESC,"Member A Low Limit")
+    field(VAL,"$(MEMBER_A_LL=0)")
+}
+
+record(ai,"$(S):COLPAIR$(Z):MEMBER_A_HL")
+{
+    field(DESC,"Member A High Limit")
+    field(VAL,"$(MEMBER_A_HL=0)")
+}
+
+record(ai,"$(S):COLPAIR$(Z):MEMBER_B_LL")
+{
+    field(DESC,"Member B Low Limit")
+    field(VAL,"$(MEMBER_B_LL=0)")
+}
+
+record(ai,"$(S):COLPAIR$(Z):MEMBER_B_HL")
+{
+    field(DESC,"Member B High Limit")
+    field(VAL,"$(MEMBER_B_HL=0)")
+}
