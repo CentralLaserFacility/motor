@@ -51,6 +51,10 @@ include "home_visibility.db"
 # ###  CUSTOM RECORDS ####################################################
 record(mbbi, "$(P)$(M):HEALTH") {
   field(DESC, "Physical state of axis")
+  field(ZRVL,"0")
+  field(ONVL,"1")
+  field(TWVL,"2")
+  field(THVL,"3")
   field(ZRST, "Unknown")
   field(ONST, "Healthy")
   field(TWST, "Warning")
@@ -75,6 +79,10 @@ record(bi, "$(P)$(M):FEEDBACK_CAPABLE") {
 
 record(mbbi,"$(P)$(M):LOOP") {
   field(DESC, "Control loop mode")
+  field(ZRVL,"0")
+  field(ONVL,"1")
+  field(TWVL,"2")
+  field(THVL,"3")
   field(ZRST, "Open Loop")
   field(ONST, "Feedback")
   field(TWST, "Closed Loop")
@@ -135,7 +143,7 @@ record(stringin,"$(P)$(M):ASSEMBLY_BARCODE")
 #Description for the enum ROTARY/LINEAR/KINEMATIC/PITCH/YAW/ROLL
 record(stringin, "$(P)$(M):STAGE_TYPE") {
   field(DESC, "Stage or Load type")
-  field(VAL, "$(STAGE_TYPE=  )")
+  field(VAL, "$(STAGE_TYPE= )")
 }
 
 record(bi,"$(P)$(M):STO_PRESENT") {
@@ -174,13 +182,6 @@ record(bi,"$(P)$(M):COLLISION")
   field(ZNAM,"No")
   field(ONAM,"Yes")
   field(VAL,"$(COLLISION_RISK=0)")
-}
-
-menu(menuLOOP) {
-  choice(menuLOOPOpen,      "Open Loop")
-  choice(menuLOOPFeedback,  "Feedback")
-  choice(menuLOOPClosed,    "Closed Loop")
-  choice(menuLOOPActive,    "Active Closed Loop")
 }
 
 #Instructive User input value without actuation 
