@@ -1,0 +1,245 @@
+
+#################################################################################
+# CLF specific and for UI purposes basic_asyn_motor overlay template.
+
+#Enable/Disable channel access for the motor record
+record(bo, "$(P)$(M):Disable") {
+  field(VAL, "0")
+  field(PINI, "YES")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  info(autosaveFields_pass0, "VAL")
+  field(OUT, "$(P)$(M):SDIS.A PP")
+}
+
+#Record that will disable and re-enable record if any of its inputs are non-zero
+record(calcout, "$(P)$(M):SDIS") {
+  field(DESC, "Disable on non-zero input")
+  field(VAL, "0")
+  field(CALC, "(A|B|C|D|E|F|G|H|I|J|K|L)>0")
+  field(OUT, "$(P)$(M).DISP PP")
+}
+
+#Record to stop the motor record with ASG=ALWAYS
+record(bo, "$(P)$(M):Stop")
+{
+  field(DESC,"Stop the motor")
+  field(DTYP,"Soft Channel")
+  field(OUT, "$(P)$(M).STOP PP")
+  field(VAL, "1")
+  field(ASG, "ALWAYS")
+}
+
+# Optional delay applied after motion completion before asserting DMOV, allowing mechanical settling or controller post-processing.
+record(ao, "$(P)$(M):PostMoveDelay")
+{
+   field(DESC, "Post Move Delay")
+   field(DTYP, "asynFloat64")
+   field(OUT,  "@asyn($(PORT),$(ADDR))MOTOR_POST_MOVE_DELAY")
+   field(VAL, "0")
+   field(PINI, "YES")
+   field(EGU, "s")
+   field(PREC, "1")
+}
+
+#Include record to provide calculated error
+include "error_calc.db"
+
+#Include records to control the visibility of the home buttons on motor_detail.db
+include "home_visibility.db"
+
+# ###  CUSTOM RECORDS ####################################################
+record(mbbi, "$(P)$(M):HEALTH") {
+  field(DESC, "Physical state of axis")
+  field(ZRVL,"0")
+  field(ONVL,"1")
+  field(TWVL,"2")
+  field(THVL,"3")
+  field(ZRST, "Unknown")
+  field(ONST, "Healthy")
+  field(TWST, "Warning")
+  field(THST, "Fault")
+  field(DOL,  "$(P)$(M):HEALTH_CALC.VAL CP")
+  field(OMSL, "closed_loop")
+}
+
+record(calc, "$(P)$(M):HEALTH_CALC")
+{
+  field(INPA, "$(P)$(M):MotorConnection CP")
+  #field(INPB, "$(P)$(M).MSTA CP")  #MSTA's use is planned later
+  field(CALC, "(A==0)?3:1")
+}
+
+record(bi, "$(P)$(M):FEEDBACK_INTENDED") {
+  field(DESC, "ClosedLoop capable and runs CL")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL, "$(FEEDBACK_INTENDED=0)")
+}
+
+record(mbbi,"$(P)$(M):LOOP") {
+  field(DESC, "Control loop mode")
+  field(ZRVL,"0")
+  field(ONVL,"1")
+  field(TWVL,"2")
+  field(THVL,"3")
+  field(ZRST, "Open Loop")
+  field(ONST, "Feedback")
+  field(TWST, "Closed Loop")
+  field(THST, "Active Closed Loop")
+  field(VAL, "$(LOOP=0)")
+}
+
+record(stringin,"$(P)$(M):DESIGNATOR")
+{
+  field(DESC,"Machine Designator")
+  field(VAL,"$(DESIGNATOR=)")
+}
+
+record(stringin,"$(P)$(M):MANUFACTURER")
+{
+  field(DESC,"Manufacturer")
+  field(VAL,"$(MANUFACTURER=)")
+}
+
+record(stringin,"$(P)$(M):MODEL")
+{
+  field(DESC,"Model")
+  field(VAL,"$(MODEL=)")
+}
+
+record(stringin,"$(P)$(M):MOTOR_TYPE")
+{
+  field(DESC,"Motor Type")
+  field(VAL,"$(MOTOR_TYPE=)")
+}
+
+#Stage assembly and asset tags
+record(stringin,"$(P)$(M):BARCODE")
+{
+  field(DESC,"Axis Barcode")
+  field(VAL,"$(BARCODE=)")
+}
+
+# Assembly multi-axis stages, also; What its carrying and what axis it typically drives in PM-201-CAM-1-Z
+record(stringin,"$(P)$(M):ASSEMBLY")
+{
+  field(DESC,"Assembly Designator")
+  field(VAL,"$(ASSEMBLY=)")
+}
+
+#POSITIONER/TRIPOD/HEXAPOD/KINEMATIC
+record(stringin,"$(P)$(M):ASSEMBLY_TYPE")
+{
+  field(DESC,"Assembly Type")
+  field(VAL,"$(ASSEMBLY_TYPE=)")
+}
+
+record(stringin,"$(P)$(M):ASSEMBLY_BARCODE") 
+{
+  field(DESC,"Assembly Barcode")
+  field(VAL,"$(ASSEMBLY_BARCODE=)")
+}
+
+#Description for the enum ROTARY/LINEAR/KINEMATIC
+record(stringin, "$(P)$(M):STAGE_TYPE") {
+  field(DESC, "Stage or Load type")
+  field(VAL, "$(STAGE_TYPE= )")
+}
+
+#Machine geometry Degrees of freedom e.g. Planer Motion Type for the axis X/Y/Z/PITCH/ROLL/YAW
+record(stringin,"$(P)$(M):DOF_TYPE") {
+  field(DESC,"Kinematic DOF")
+  field(VAL,"$(DOF_TYPE=)")
+}
+
+record(bi,"$(P)$(M):STO_PRESENT") {
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(STO_PRESENT=0)")
+}
+
+record(bi,"$(P)$(M):BRAKE_PRESENT") {
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(BRAKE_PRESENT=0)")
+}
+
+#CustomRecord describing if there is an ENCODER for the Axis
+record(bi, "$(P)$(M):ENCODER") {
+  field(DESC, "Encoder Fitted")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+  field(VAL, "$(ENCODER_PRESENT=0)")
+}
+
+record(stringin, "$(P)$(M):ENCODER_TYPE") {
+  field(DESC, "Encoder type")
+  field(VAL, "$(ENCODER_TYPE=)")
+}
+
+record(bi,"$(P)$(M):COMMISSIONED") {
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(COMMISSIONED=1)")
+}
+
+record(bi,"$(P)$(M):COLLISION")
+{
+  field(ZNAM,"No")
+  field(ONAM,"Yes")
+  field(VAL,"$(COLLISION_RISK=0)")
+}
+
+#Instructive User input value without actuation 
+record(ao, "$(P)$(M):TargetVal") 
+{ 
+  field(DESC,"Input without move")
+  field(DTYP,"Soft Channel")
+  field(VAL, "0")
+}
+
+#Following error tolerance as defined by the controller
+record(ai,"$(P)$(M):POSITION_TOLERANCE") {
+  field(DESC,"In-position tolerance")
+  field(VAL,"$(POSITION_TOLERANCE=0)")
+  field(EGU,"$(EGU)")
+}
+
+#LOPR for TargetVal from motor record
+record(calcout,"$(P)$(M):LowLim")
+{
+  field(PINI, "YES")
+  field(DESC,"Low limit Motor value")
+  field(CALC,"A")
+  field(INPA,"$(P)$(M).LLM CP MS")
+  field(OUT,"$(P)$(M):TargetVal.LOPR")
+}
+
+#HOPR for TargetVal from motor record
+record(calcout,"$(P)$(M):HighLim")
+{
+  field(PINI, "YES")
+  field(DESC,"High limit Motor value")
+  field(CALC,"A")
+  field(INPA,"$(P)$(M).HLM CP MS")
+  field(OUT,"$(P)$(M):TargetVal.HOPR")
+}
+
+#Instructive move command 
+record(calcout, "$(P)$(M):DoMove")
+{
+  field(INPA, "$(P)$(M):TargetVal")
+  field(CALC, "A")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P)$(M).DVAL PP")
+}
+
+record(longin, "$(P)$(M):MotorConnection") 
+{ 
+  field(DESC, "Motor Connection Status") 
+  field(DTYP, "asynInt32") 
+  field(INP,  "@asyn($(PORT),$(ADDR))MOTOR_CONNECTION_STATUS") 
+  field(SCAN, "I/O Intr") 
+}
