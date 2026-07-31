@@ -70,11 +70,11 @@ record(calc, "$(P)$(M):HEALTH_CALC")
   field(CALC, "(A==0)?3:1")
 }
 
-record(bi, "$(P)$(M):FEEDBACK_CAPABLE") {
-  field(DESC, "ClosedLoop capable")
+record(bi, "$(P)$(M):FEEDBACK_INTENDED") {
+  field(DESC, "ClosedLoop capable and runs CL")
   field(ZNAM, "No")
   field(ONAM, "Yes")
-  field(VAL, "$(FEEDBACK_CAPABLE=0)")
+  field(VAL, "$(FEEDBACK_INTENDED=0)")
 }
 
 record(mbbi,"$(P)$(M):LOOP") {
